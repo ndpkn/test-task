@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import AddChatView from './AddChatView'
 import axios from 'axios'
-const id = localStorage.getItem('idWA')
-const token = localStorage.getItem('tokenWA')
-const url = `https://api.green-api.com/waInstance{{${id}}}/CheckWhatsapp/{{${token}}}`
 
 const AddChat = () => {
+    const id = localStorage.getItem('idWA')
+    const token = localStorage.getItem('tokenWA')
+    const url = `https://api.green-api.com/waInstance{{${id}}}/CheckWhatsapp/{{${token}}}`
     const [phone, setPhone] = useState('')
     const data = {
         phoneNumber: phone
@@ -24,6 +24,7 @@ const AddChat = () => {
                 )
             .then(res => console.log(res))
             .catch(err => console.log(err))
+        localStorage.setItem('phone', phone)
     }
     return (
         <AddChatView setPhone={setPhone} sendPhone={sendPhone} />

@@ -28,7 +28,6 @@ const Chat = () => {
         }, 5000);
 
         const getHistorySuccess = (res) => {
-            console.log(res);
             setMessages(res.data.reverse())
         }
         const getHistoryError = (err) => {
@@ -40,7 +39,6 @@ const Chat = () => {
         
     },[])
     const onSuccess = (res) => {
-        console.log(res);
         if (res.data) {
             let message = res.data.body.messageData.textMessageData.textMessage
             setMessages((messages) => [...messages, {textMessage: message, type: 'incoming'}])

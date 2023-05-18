@@ -2,15 +2,17 @@
 import { useState } from "react"
 import LoginPageView from "./LoginPageView"
 import { useRouter } from "next/navigation"
+import ServiceAuth from "../services/ServiceAuth"
 
 const LoginPage = () => {
     const router = useRouter()
     const [id, setId] = useState('')
     const [token, setToken] = useState('')
+    const service = new ServiceAuth()
+    
     const sendForm = () => {
         console.log(id, token);
-        localStorage.setItem('idWA', id)
-        localStorage.setItem('tokenWA', token)
+        service.auth(id, token)
         router.push('/add-chat')
     }
     return (

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Layout = styled.div`
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 2rem 3.5rem;
     display: flex;
     max-width: 50rem;
     margin: 0 auto;

@@ -13,7 +13,6 @@ const InputBlockOverlay = styled.div`
     max-width: 100rem;
     background-color: #f2f2f2;
     padding: 0 1rem;
-
 `
 const InputBlock = styled.form`
     max-width: 50rem;
@@ -31,17 +30,20 @@ const Input = styled.input`
     border-radius: 0.5rem;
     padding-left: 0.5rem;
     font-size: 1rem;
-
 `
-const ChatView = ({ message, setMessage, onSubmit }) => {
+
+const ChatView = ({ message, messages, setMessage, onSubmit, scroll }) => {
+    const renderMessages =
+        messages?.map((messageText, i) => {
+            return <Message key={i} messageText={messageText.textMessage} position={messageText.type == 'outgoing' ? 'right' : 'left'}/>
+        })
     return (
         <Container>
             <h1>Чат</h1>
-            <Message messageText={'Hello. How are you'} position={'left'}/>
-            <Message messageText={'Hello. How are you'} position={'left'}/>
-            <Message messageText={'Hello. How are you'} position={'right'}/>
-            <InputBlockOverlay>
-                <InputBlock onSubmit={e => onSubmit(e, message)} action='post'>
+            {renderMessages}
+            <div ref={scroll}></div>
+            <InputBlockOverlay >
+                <InputBlock onSubmit={e => onSubmit(e)} action='post' >
                     <Input
                         value={message}
                         onChange={e => setMessage(e.target.value)}

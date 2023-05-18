@@ -1,8 +1,8 @@
 'use client'
-import { Button, TextField } from "@mui/material"
+import { Alert, AlertTitle, Button, TextField } from "@mui/material"
 import Container from "../components/Container"
 
-const AddChatView = ({ setPhone, sendPhone }) => {
+const AddChatView = ({ setPhone, sendPhone, error }) => {
     return (
         <Container>
             <h1>Создание чата</h1>
@@ -15,6 +15,14 @@ const AddChatView = ({ setPhone, sendPhone }) => {
                 color="success"
                 onChange={(e) => setPhone(e.target.value)}
             />
+            {
+                error ? 
+                <Alert severity="error">
+                    <AlertTitle>Ошибка</AlertTitle>
+                    {error}
+                </Alert> :
+                null
+            }
             <Button 
                 variant="contained" 
                 color="success"
